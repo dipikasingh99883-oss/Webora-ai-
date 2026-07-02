@@ -1,0 +1,6 @@
+{
+  "name": "Webora AI",
+  "description": "A modern AI-powered Web Agency SaaS platform where clients generate detailed website requirement documents with an AI chatbot, browse website templates, and export projects directly to Google Drive.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

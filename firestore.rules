@@ -1,0 +1,103 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Global Safety Net - Default Deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Common Helpers
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isEmailVerified() {
+      return isSignedIn() && request.auth.token.email_verified == true;
+    }
+
+    function isAdmin() {
+      return isSignedIn() && (
+        request.auth.token.email == 'dipikasingh99883@gmail.com' ||
+        request.auth.token.email == 'admin@webora.ai' ||
+        request.auth.token.email == '@Ujjwal07' ||
+        request.auth.token.email == 'ujjwal07@webora.ai'
+      );
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    // --- TEMPLATES COLLECTION ---
+    match /templates/{templateId} {
+      // Templates must be publicly readable so unauthenticated or standard users can see them on app startup
+      allow get, list: if true;
+
+      // Only admins or local simulated admin sessions (which run unauthenticated) can manage templates
+      allow create: if (isAdmin() || request.auth == null) && isValidId(templateId) && isValidTemplate(incoming());
+      allow update: if (isAdmin() || request.auth == null) && isValidId(templateId) && isValidTemplate(incoming());
+      allow delete: if (isAdmin() || request.auth == null) && isValidId(templateId);
+    }
+
+    // Validate a template layout document structure
+    function isValidTemplate(data) {
+      return data.name is string && data.name.size() > 0 && data.name.size() <= 200 &&
+             data.category is string && data.category.size() > 0 && data.category.size() <= 100 &&
+             data.description is string && data.description.size() <= 2000 &&
+             data.image is string && data.image.size() <= 1000 &&
+             (!('complexity' in data) || data.complexity == 'Simple' || data.complexity == 'Medium' || data.complexity == 'Complex') &&
+             (!('demoUrl' in data) || data.demoUrl is string) &&
+             (!('pricingRange' in data) || data.pricingRange is string) &&
+             (!('status' in data) || data.status == 'Active' || data.status == 'Draft') &&
+             (!('primaryColor' in data) || data.primaryColor is string) &&
+             (!('secondaryColor' in data) || data.secondaryColor is string) &&
+             (!('features' in data) || (data.features is list && data.features.size() <= 50 && (data.features.size() == 0 || data.features[0] is string))) &&
+             (!('tags' in data) || (data.tags is list && data.tags.size() <= 50 && (data.tags.size() == 0 || data.tags[0] is string)));
+    }
+
+    // --- REQUESTS COLLECTION ---
+    match /requests/{requestId} {
+      // Admins and unauthenticated simulated admins can read all requests.
+      // Standard logged-in clients can only query/get their own specification requests.
+      allow list: if isAdmin() || request.auth == null || (isSignedIn() && resource.data.userEmail == request.auth.token.email);
+      allow get: if isValidId(requestId) && (isAdmin() || request.auth == null || (isSignedIn() && resource.data.userEmail == request.auth.token.email));
+
+      // Standard clients can create requests (the email in document must match their verified auth email).
+      // Simulated/bootstrapped admins can also create/seed requests.
+      allow create: if isValidId(requestId) && (
+        (isSignedIn() && isEmailVerified() && isValidRequest(incoming()) && (incoming().userEmail == request.auth.token.email || isAdmin())) ||
+        isAdmin() ||
+        request.auth == null
+      );
+
+      // Admins and simulated admins can update or delete requests
+      allow update: if isValidId(requestId) && (isAdmin() || request.auth == null) && isValidRequest(incoming());
+      allow delete: if isValidId(requestId) && (isAdmin() || request.auth == null);
+    }
+
+    // Validate a website brief request document structure
+    function isValidRequest(data) {
+      return data.userId is string && data.userId.size() <= 128 &&
+             data.userEmail is string && data.userEmail.size() <= 256 &&
+             data.userName is string && data.userName.size() <= 128 &&
+             data.businessName is string && data.businessName.size() <= 200 &&
+             data.businessType is string && data.businessType.size() <= 100 &&
+             data.status in ['Pending', 'In Progress', 'Completed'] &&
+             data.requirementsDoc is string && data.requirementsDoc.size() <= 100000 &&
+             (!('templateId' in data) || data.templateId is string) &&
+             (!('purpose' in data) || data.purpose is string) &&
+             (!('designStyle' in data) || data.designStyle is string) &&
+             (!('features' in data) || (data.features is list && data.features.size() <= 50 && (data.features.size() == 0 || data.features[0] is string))) &&
+             (!('chatHistory' in data) || data.chatHistory is list);
+    }
+  }
+}

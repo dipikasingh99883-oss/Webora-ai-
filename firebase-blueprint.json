@@ -1,0 +1,148 @@
+{
+  "entities": {
+    "Template": {
+      "title": "Template",
+      "description": "Baseline framework templates in the layout catalog",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Template layout name"
+        },
+        "description": {
+          "type": "string",
+          "description": "Template design/purpose description"
+        },
+        "category": {
+          "type": "string",
+          "description": "Vertical category of the layout"
+        },
+        "image": {
+          "type": "string",
+          "description": "Thumbnail preview URL"
+        },
+        "features": {
+          "type": "array",
+          "description": "Included visual/technical features"
+        },
+        "complexity": {
+          "type": "string",
+          "enum": ["Simple", "Medium", "Complex"],
+          "description": "Design tier complexity"
+        },
+        "demoUrl": {
+          "type": "string",
+          "description": "Live preview sandbox link"
+        },
+        "pricingRange": {
+          "type": "string",
+          "description": "Flat rate cost range"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["Active", "Draft"],
+          "description": "Catalog visibility status"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Seeded or created timestamp"
+        },
+        "primaryColor": {
+          "type": "string",
+          "description": "Primary theme HEX code"
+        },
+        "secondaryColor": {
+          "type": "string",
+          "description": "Secondary theme HEX code"
+        },
+        "tags": {
+          "type": "array",
+          "description": "Search tags"
+        },
+        "customContent": {
+          "type": "object",
+          "description": "Interactive layout parameters"
+        },
+        "sections": {
+          "type": "array",
+          "description": "Ordered presentation section widgets"
+        }
+      },
+      "required": ["name", "category", "description", "image", "features", "complexity"]
+    },
+    "ProjectRequest": {
+      "title": "ProjectRequest",
+      "description": "Client website brief specifications and requirement docs",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Auth user identifier or guest session ID"
+        },
+        "userEmail": {
+          "type": "string",
+          "format": "email",
+          "description": "Email address of the client"
+        },
+        "userName": {
+          "type": "string",
+          "description": "Display name of the client"
+        },
+        "businessName": {
+          "type": "string",
+          "description": "Company or project venture name"
+        },
+        "businessType": {
+          "type": "string",
+          "description": "Business vertical classification"
+        },
+        "purpose": {
+          "type": "string",
+          "description": "Main website goal and target action"
+        },
+        "designStyle": {
+          "type": "string",
+          "description": "Visual style theme preferences"
+        },
+        "features": {
+          "type": "array",
+          "description": "Requested interactive modules"
+        },
+        "templateId": {
+          "type": "string",
+          "description": "The chosen baseline framework ID"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Request creation timestamp"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["Pending", "In Progress", "Completed"],
+          "description": "Current engineering status in the pipeline"
+        },
+        "requirementsDoc": {
+          "type": "string",
+          "description": "The AI compiled specification sheet markdown"
+        },
+        "chatHistory": {
+          "type": "array",
+          "description": "Client consultation dialogue log"
+        }
+      },
+      "required": ["userId", "userEmail", "userName", "businessName", "businessType", "requirementsDoc", "status"]
+    }
+  },
+  "firestore": {
+    "templates/{templateId}": {
+      "schema": "Template",
+      "description": "Collection of baseline frameworks"
+    },
+    "requests/{requestId}": {
+      "schema": "ProjectRequest",
+      "description": "Collection of client specification briefs"
+    }
+  }
+}
