@@ -6,6 +6,15 @@
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 }
 
+html, body, #root {
+  background-color: #0B0F1A;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 /* Custom Scrollbars */
 ::-webkit-scrollbar {
   width: 6px;

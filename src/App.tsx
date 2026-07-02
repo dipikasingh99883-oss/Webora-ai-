@@ -496,7 +496,7 @@ A sleek, modern bento grid style portfolio website built to showcase creative id
     : PORTFOLIO_PROJECTS.filter(p => p.category === selectedCategory);
 
   return (
-    <div className="min-h-screen bg-[#0B0F1A] text-gray-100 flex flex-col font-sans selection:bg-blue-600 selection:text-white">
+    <div className="min-h-screen bg-[#0B0F1A] text-gray-100 flex flex-col font-sans selection:bg-blue-600 selection:text-white relative overflow-x-hidden w-full">
       {/* Glow Effects Background */}
       <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
       <div className="absolute top-1/3 right-1/4 w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-3xl pointer-events-none"></div>
