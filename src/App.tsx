@@ -496,10 +496,10 @@ A sleek, modern bento grid style portfolio website built to showcase creative id
     : PORTFOLIO_PROJECTS.filter(p => p.category === selectedCategory);
 
   return (
-    <div className="min-h-screen bg-[#0B0F1A] text-gray-100 flex flex-col font-sans selection:bg-blue-600 selection:text-white relative overflow-x-hidden w-full">
+    <div className="min-h-screen bg-[#FAF6F0] text-[#352922] flex flex-col font-sans selection:bg-[#C5A86B] selection:text-white relative overflow-x-hidden w-full">
       {/* Glow Effects Background */}
-      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
-      <div className="absolute top-1/3 right-1/4 w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-[#C5A86B]/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="absolute top-1/3 right-1/4 w-[600px] h-[600px] bg-[#AA7C11]/5 rounded-full blur-3xl pointer-events-none"></div>
 
       {/* Header Navigation */}
       <Navbar 
@@ -531,6 +531,15 @@ A sleek, modern bento grid style portfolio website built to showcase creative id
             }} 
             user={user} 
             onOpenAuth={() => setAuthModalOpen(true)} 
+            templates={templates}
+            onSelectTemplate={(template) => {
+              setSelectedTemplate(template);
+              if (!user) {
+                setAuthModalOpen(true);
+              } else {
+                setCurrentView('dashboard');
+              }
+            }}
           />
         )}
 
@@ -538,22 +547,22 @@ A sleek, modern bento grid style portfolio website built to showcase creative id
         {currentView === 'portfolio' && (
           <div className="space-y-12 pt-4">
             <div className="text-center max-w-2xl mx-auto space-y-3">
-              <h2 className="text-3xl font-extrabold text-white">Agency Portfolio</h2>
-              <p className="text-gray-400 text-xs leading-relaxed">
+              <h2 className="font-serif text-3xl font-bold text-[#312520]">Agency Portfolio</h2>
+              <p className="text-[#5C4C41] text-xs leading-relaxed">
                 Take an interactive tour of past custom visual products designed, developed, and launched by the Webora AI team.
               </p>
             </div>
 
             {/* Categories filter */}
-            <div className="flex flex-wrap gap-2 justify-center pb-4 border-b border-gray-900">
+            <div className="flex flex-wrap gap-2 justify-center pb-4 border-b border-[#EADBCE]/50">
               {categories.map((cat) => (
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`px-4 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider cursor-pointer transition-colors ${
+                  className={`px-4 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider cursor-pointer transition-all ${
                     selectedCategory === cat
-                      ? 'bg-blue-600 text-white'
-                      : 'text-gray-400 hover:text-white bg-gray-850 hover:bg-gray-800'
+                      ? 'bg-gradient-to-r from-[#D4AF37] to-[#AA7C11] text-white shadow-md shadow-[#AA7C11]/15'
+                      : 'text-[#5C4C41] hover:text-[#312520] bg-white/60 hover:bg-white border border-[#EADBCE]/50'
                   }`}
                 >
                   {cat}
@@ -566,36 +575,36 @@ A sleek, modern bento grid style portfolio website built to showcase creative id
               {filteredProjects.map((project) => (
                 <div
                   key={project.id}
-                  className="group relative rounded-2xl overflow-hidden glass hover:border-gray-700 transition-all flex flex-col"
+                  className="group relative rounded-2xl overflow-hidden glass hover:border-[#C5A86B]/40 hover:scale-[1.01] duration-300 transition-all flex flex-col"
                 >
-                  <div className="relative aspect-video overflow-hidden bg-gray-950">
+                  <div className="relative aspect-video overflow-hidden bg-[#FAF6F0]">
                     <img
                       referrerPolicy="no-referrer"
                       src={project.image}
                       alt={project.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-gray-950 to-transparent opacity-85"></div>
-                    <div className="absolute top-3 right-3 px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider bg-black/55 backdrop-blur-md rounded-full text-blue-400 border border-blue-500/10">
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#FAF6F0]/90 via-transparent to-[#FAF6F0]/10 opacity-80"></div>
+                    <div className="absolute top-3 right-3 px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider bg-[#FAF6F0]/95 backdrop-blur-md rounded-full text-[#AA7C11] border border-[#C5A86B]/20">
                       {project.category}
                     </div>
                   </div>
 
                   <div className="p-6 flex-grow flex flex-col justify-between space-y-4">
                     <div>
-                      <h4 className="text-md font-bold text-white group-hover:text-blue-400 transition-colors">
+                      <h4 className="text-md font-serif font-bold text-[#312520] group-hover:text-[#AA7C11] transition-colors">
                         {project.name}
                       </h4>
-                      <p className="text-xs text-gray-400 leading-relaxed mt-1.5">
+                      <p className="text-xs text-[#5C4C41] leading-relaxed mt-1.5">
                         {project.description}
                       </p>
                     </div>
 
-                    <div className="pt-2 border-t border-gray-900 flex items-center justify-between">
-                      <span className="text-[10px] font-bold uppercase text-gray-500 tracking-widest">
+                    <div className="pt-2 border-t border-[#EADBCE]/40 flex items-center justify-between">
+                      <span className="text-[10px] font-bold uppercase text-[#8E7B6E] tracking-widest">
                         Project Completed
                       </span>
-                      <span className="text-xs font-semibold text-blue-400 flex items-center gap-1">
+                      <span className="text-xs font-bold text-[#AA7C11] group-hover:text-[#D4AF37] flex items-center gap-1 transition-colors">
                         <span>Read Case Study</span>
                         <ArrowUpRight className="w-3.5 h-3.5" />
                       </span>
@@ -611,8 +620,8 @@ A sleek, modern bento grid style portfolio website built to showcase creative id
         {currentView === 'templates' && (
           <div className="space-y-12 pt-4">
             <div className="text-center max-w-xl mx-auto space-y-3">
-              <h2 className="text-3xl font-extrabold text-white">Starter Frameworks</h2>
-              <p className="text-gray-400 text-xs leading-relaxed">
+              <h2 className="font-serif text-3xl font-bold text-[#312520]">Starter Frameworks</h2>
+              <p className="text-[#5C4C41] text-xs leading-relaxed">
                 Choose a baseline template framework below to kickstart your website consultation.
               </p>
             </div>
@@ -638,11 +647,11 @@ A sleek, modern bento grid style portfolio website built to showcase creative id
             
             {/* Sidebar Controls */}
             <div className="lg:col-span-3 space-y-6">
-              <div className="p-6 rounded-2xl glass space-y-6 border border-gray-800">
-                <div className="border-b border-gray-800 pb-4">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-gray-400">Selected Framework</h4>
+              <div className="p-6 rounded-2xl glass space-y-6 border border-[#EADBCE]/35">
+                <div className="border-b border-[#EADBCE]/20 pb-4">
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-[#8E7B6E]">Selected Framework</h4>
                   {selectedTemplate ? (
-                    <div className="mt-3 flex items-center gap-3 bg-gray-900/40 p-2.5 rounded-xl border border-gray-800">
+                    <div className="mt-3 flex items-center gap-3 bg-[#FAF6F0] p-2.5 rounded-xl border border-[#EADBCE]/40">
                       <img
                         referrerPolicy="no-referrer"
                         src={selectedTemplate.image}
@@ -650,16 +659,16 @@ A sleek, modern bento grid style portfolio website built to showcase creative id
                         className="w-10 h-10 rounded-lg object-cover"
                       />
                       <div className="min-w-0">
-                        <span className="text-xs font-bold text-white block truncate">{selectedTemplate.name}</span>
-                        <span className="text-[9px] text-gray-500 uppercase block font-semibold">{selectedTemplate.category}</span>
+                        <span className="text-xs font-bold text-[#312520] block truncate">{selectedTemplate.name}</span>
+                        <span className="text-[9px] text-[#8E7B6E] uppercase block font-semibold">{selectedTemplate.category}</span>
                       </div>
                     </div>
                   ) : (
-                    <div className="mt-3 p-3 rounded-xl border border-dashed border-gray-850 text-center text-xs text-gray-500">
+                    <div className="mt-3 p-3 rounded-xl border border-dashed border-[#EADBCE]/55 text-center text-xs text-[#8E7B6E]">
                       No baseline selected.
                       <button 
                         onClick={() => setCurrentView('templates')} 
-                        className="block w-full text-center text-xs text-blue-400 font-bold mt-1.5 hover:underline cursor-pointer"
+                        className="block w-full text-center text-xs text-[#AA7C11] font-bold mt-1.5 hover:underline cursor-pointer"
                       >
                         Browse Templates →
                       </button>
@@ -668,13 +677,13 @@ A sleek, modern bento grid style portfolio website built to showcase creative id
                 </div>
 
                 <div className="space-y-3.5">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-gray-400">Actions</h4>
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-[#8E7B6E]">Actions</h4>
                   
                   <button
                     disabled={chatHistory.length === 0 || isCompilingDoc}
                     onClick={handleCompileDocument}
                     id="compile-wrd-btn"
-                    className="w-full py-3 bg-blue-600 hover:bg-blue-500 text-white disabled:bg-gray-850 disabled:text-gray-500 font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer flex items-center justify-center gap-2"
+                    className="w-full py-3 bg-gradient-to-r from-[#D4AF37] to-[#AA7C11] hover:from-[#E5C483] hover:to-[#8C6207] text-white disabled:bg-[#FAF6F0]/40 disabled:text-[#8E7B6E] font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer flex items-center justify-center gap-2 border border-[#AA7C11]/30"
                   >
                     {isCompilingDoc ? (
                       <>
@@ -691,7 +700,7 @@ A sleek, modern bento grid style portfolio website built to showcase creative id
 
                   <button
                     onClick={handleResetChat}
-                    className="w-full py-2.5 bg-gray-900 hover:bg-gray-850 border border-gray-800 text-gray-300 font-semibold text-xs rounded-xl transition-all cursor-pointer"
+                    className="w-full py-2.5 bg-[#F4ECE1] hover:bg-[#EADBCE] border border-[#D7C5B2]/30 text-[#312520] font-semibold text-xs rounded-xl transition-all cursor-pointer"
                   >
                     Clear Work Space
                   </button>
@@ -699,14 +708,14 @@ A sleek, modern bento grid style portfolio website built to showcase creative id
               </div>
 
               {/* Status Guide Widget */}
-              <div className="p-5 rounded-2xl bg-gray-900/20 border border-gray-900 flex items-start gap-3">
-                <Info className="w-5 h-5 text-cyan-400 shrink-0 mt-0.5" />
-                <div className="text-xs text-gray-400 leading-relaxed">
-                  <span className="font-bold text-gray-300 block mb-1">How it works:</span>
+              <div className="p-5 rounded-2xl bg-[#C5A86B]/5 border border-[#C5A86B]/20 flex items-start gap-3">
+                <Info className="w-5 h-5 text-[#AA7C11] shrink-0 mt-0.5" />
+                <div className="text-xs text-[#5C4C41] leading-relaxed">
+                  <span className="font-bold text-[#312520] block mb-1">How it works:</span>
                   1. Have a chat with our AI consultant regarding your web requirements.<br/>
                   2. Choose a starter template optionally.<br/>
-                  3. Click <span className="text-white font-semibold">Compile Spec Sheet</span> to generate structured requirements.<br/>
-                  4. Export directly to your <span className="text-white font-semibold">Google Drive</span>.
+                  3. Click <span className="text-[#AA7C11] font-semibold">Compile Spec Sheet</span> to generate structured requirements.<br/>
+                  4. Export directly to your <span className="text-[#AA7C11] font-semibold">Google Drive</span>.
                 </div>
               </div>
             </div>
@@ -752,13 +761,13 @@ A sleek, modern bento grid style portfolio website built to showcase creative id
             ) : (
               <>
                 {/* Admin Header & Tabs Navigation Row */}
-                <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border-b border-gray-900 pb-6 text-gray-100">
+                <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border-b border-[#EADBCE]/40 pb-6 text-[#352922]">
                   <div>
-                    <h2 className="text-3xl font-extrabold text-white flex items-center gap-2">
-                      <ShieldCheck className="w-8 h-8 text-cyan-400" />
+                    <h2 className="font-serif text-3xl font-bold text-[#312520] flex items-center gap-2">
+                      <ShieldCheck className="w-8 h-8 text-[#C5A86B]" />
                       <span>Webora AI Admin Hub</span>
                     </h2>
-                    <p className="text-gray-400 text-xs mt-1">
+                    <p className="text-[#5C4C41] text-xs mt-1">
                       {adminActiveTab === 'requests' 
                         ? 'Review and manage user website specifications, export specs, and update project pipeline statuses.' 
                         : adminActiveTab === 'templates'
@@ -768,11 +777,13 @@ A sleek, modern bento grid style portfolio website built to showcase creative id
                   </div>
 
                   {/* Tab triggers */}
-                  <div className="flex bg-gray-950 p-1.5 rounded-xl border border-gray-800 self-stretch md:self-auto justify-between gap-1">
+                  <div className="flex bg-white/60 p-1.5 rounded-xl border border-[#EADBCE]/50 self-stretch md:self-auto justify-between gap-1">
                     <button
                       onClick={() => setAdminActiveTab('requests')}
                       className={`px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
-                        adminActiveTab === 'requests' ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/10' : 'text-gray-400 hover:text-white'
+                        adminActiveTab === 'requests' 
+                          ? 'bg-gradient-to-r from-[#D4AF37] to-[#AA7C11] text-white shadow-md shadow-[#AA7C11]/15' 
+                          : 'text-[#5C4C41] hover:text-[#312520]'
                       }`}
                     >
                       Client Requests ({requestsList.length})
@@ -780,7 +791,9 @@ A sleek, modern bento grid style portfolio website built to showcase creative id
                     <button
                       onClick={() => setAdminActiveTab('templates')}
                       className={`px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
-                        adminActiveTab === 'templates' ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/10' : 'text-gray-400 hover:text-white'
+                        adminActiveTab === 'templates' 
+                          ? 'bg-gradient-to-r from-[#D4AF37] to-[#AA7C11] text-white shadow-md shadow-[#AA7C11]/15' 
+                          : 'text-[#5C4C41] hover:text-[#312520]'
                       }`}
                     >
                       Template Catalog ({templates.length})
@@ -788,7 +801,9 @@ A sleek, modern bento grid style portfolio website built to showcase creative id
                     <button
                       onClick={() => setAdminActiveTab('analytics')}
                       className={`px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
-                        adminActiveTab === 'analytics' ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/10' : 'text-gray-400 hover:text-white'
+                        adminActiveTab === 'analytics' 
+                          ? 'bg-gradient-to-r from-[#D4AF37] to-[#AA7C11] text-white shadow-md shadow-[#AA7C11]/15' 
+                          : 'text-[#5C4C41] hover:text-[#312520]'
                       }`}
                     >
                       Analytics
@@ -803,14 +818,14 @@ A sleek, modern bento grid style portfolio website built to showcase creative id
                       <button
                         onClick={fetchAdminRequests}
                         id="admin-refresh-btn"
-                        className="px-4 py-2 bg-gray-800 hover:bg-gray-750 border border-gray-700 text-white text-xs font-semibold rounded-xl transition-all cursor-pointer"
+                        className="px-4 py-2 bg-[#F4ECE1] hover:bg-[#EADBCE] border border-[#D7C5B2]/30 text-[#312520] text-xs font-semibold rounded-xl transition-all cursor-pointer"
                       >
                         Refresh Data
                       </button>
                       <button
                         onClick={handleSeedAdminData}
                         id="admin-seed-btn"
-                        className="px-4 py-2 bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-bold rounded-xl shadow-lg shadow-cyan-500/10 transition-all cursor-pointer"
+                        className="px-4 py-2 bg-[#C5A86B] hover:bg-[#AA7C11] text-white text-xs font-bold rounded-xl shadow-lg shadow-[#C5A86B]/15 transition-all cursor-pointer"
                       >
                         Seed Demo Request
                       </button>
@@ -818,22 +833,22 @@ A sleek, modern bento grid style portfolio website built to showcase creative id
 
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                       {/* Requests Table */}
-                      <div className="lg:col-span-7 rounded-2xl glass border border-gray-800 overflow-hidden">
-                        <div className="p-4 bg-gray-900/60 border-b border-gray-850">
-                          <h4 className="text-xs font-bold uppercase tracking-wider text-gray-400">Logged Website Brief Requests</h4>
+                      <div className="lg:col-span-7 rounded-2xl glass border border-[#EADBCE]/35 overflow-hidden">
+                        <div className="p-4 bg-[#F4ECE1]/60 border-b border-[#EADBCE]/30">
+                          <h4 className="text-xs font-bold uppercase tracking-wider text-[#8E7B6E]">Logged Website Brief Requests</h4>
                         </div>
 
                         {loadingRequests ? (
-                          <div className="p-12 text-center text-xs text-gray-500 flex flex-col items-center justify-center gap-2">
-                            <span className="w-6 h-6 rounded-full border-2 border-cyan-400 border-t-transparent animate-spin"></span>
+                          <div className="p-12 text-center text-xs text-[#8E7B6E] flex flex-col items-center justify-center gap-2">
+                            <span className="w-6 h-6 rounded-full border-2 border-[#C5A86B] border-t-transparent animate-spin"></span>
                             <span>Querying Firestore requests...</span>
                           </div>
                         ) : requestsList.length === 0 ? (
-                          <div className="p-12 text-center text-xs text-gray-500 space-y-3">
+                          <div className="p-12 text-center text-xs text-[#8E7B6E] space-y-3">
                             <p>No client requests found in the Firestore database.</p>
                             <button 
                               onClick={handleSeedAdminData} 
-                              className="text-xs text-cyan-400 font-bold hover:underline cursor-pointer"
+                              className="text-xs text-[#AA7C11] font-bold hover:underline cursor-pointer"
                             >
                               Click to seed a beautiful demo request
                             </button>
@@ -842,7 +857,7 @@ A sleek, modern bento grid style portfolio website built to showcase creative id
                           <div className="overflow-x-auto">
                             <table className="w-full text-left border-collapse">
                               <thead>
-                                <tr className="border-b border-gray-850 text-[10px] font-bold uppercase tracking-wider text-gray-400">
+                                <tr className="border-b border-[#EADBCE]/30 text-[10px] font-bold uppercase tracking-wider text-[#8E7B6E]">
                                   <th className="p-4">User</th>
                                   <th className="p-4">Project Focus</th>
                                   <th className="p-4">Template</th>
@@ -850,22 +865,22 @@ A sleek, modern bento grid style portfolio website built to showcase creative id
                                   <th className="p-4 text-right">Actions</th>
                                 </tr>
                               </thead>
-                              <tbody className="divide-y divide-gray-850 text-xs text-gray-300">
+                              <tbody className="divide-y divide-[#EADBCE]/20 text-xs text-[#5C4C41]">
                                 {requestsList.map((req) => (
                                   <tr 
                                     key={req.id} 
                                     onClick={() => setSelectedAdminRequest(req)}
-                                    className={`hover:bg-gray-900/35 transition-colors cursor-pointer ${
-                                      selectedAdminRequest?.id === req.id ? 'bg-blue-500/5' : ''
+                                    className={`hover:bg-[#F4ECE1]/40 transition-colors cursor-pointer ${
+                                      selectedAdminRequest?.id === req.id ? 'bg-[#C5A86B]/10' : ''
                                     }`}
                                   >
                                     <td className="p-4">
-                                      <span className="font-bold text-white block">{req.userName || 'Client'}</span>
-                                      <span className="text-[10px] text-gray-500 block">{req.userEmail}</span>
+                                      <span className="font-bold text-[#312520] block">{req.userName || 'Client'}</span>
+                                      <span className="text-[10px] text-[#8E7B6E] block">{req.userEmail}</span>
                                     </td>
                                     <td className="p-4">
-                                      <span className="block font-medium">{req.businessName || 'Web Project'}</span>
-                                      <span className="text-[10px] text-cyan-400 block uppercase tracking-wider">{req.businessType}</span>
+                                      <span className="block font-medium text-[#312520]">{req.businessName || 'Web Project'}</span>
+                                      <span className="text-[10px] text-[#AA7C11] block uppercase tracking-wider font-semibold">{req.businessType}</span>
                                     </td>
                                     <td className="p-4 font-mono text-[10px]">{req.templateId}</td>
                                     <td className="p-4 text-center">
@@ -876,10 +891,10 @@ A sleek, modern bento grid style portfolio website built to showcase creative id
                                         }}
                                         className={`px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider rounded-full transition-colors cursor-pointer ${
                                           req.status === 'Completed'
-                                            ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
+                                            ? 'bg-emerald-600/10 text-emerald-700 border border-emerald-600/20'
                                             : req.status === 'In Progress'
-                                            ? 'bg-blue-500/10 text-blue-400 border border-blue-500/20'
-                                            : 'bg-yellow-500/10 text-yellow-400 border border-yellow-500/20'
+                                            ? 'bg-[#C5A86B]/20 text-[#AA7C11] border border-[#C5A86B]/30'
+                                            : 'bg-yellow-600/10 text-yellow-700 border border-yellow-600/20'
                                         }`}
                                       >
                                         {req.status}
@@ -891,7 +906,7 @@ A sleek, modern bento grid style portfolio website built to showcase creative id
                                           e.stopPropagation();
                                           handleDeleteRequest(req.id);
                                         }}
-                                        className="text-gray-500 hover:text-red-400 p-1 rounded-lg hover:bg-gray-850 transition-colors cursor-pointer"
+                                        className="text-[#8E7B6E] hover:text-red-600 p-1 rounded-lg hover:bg-[#F4ECE1] transition-colors cursor-pointer"
                                         title="Delete Request Record"
                                       >
                                         <Trash className="w-4.5 h-4.5" />
@@ -906,35 +921,35 @@ A sleek, modern bento grid style portfolio website built to showcase creative id
                       </div>
 
                       {/* View/Details Pane */}
-                      <div className="lg:col-span-5 rounded-2xl glass border border-gray-800 overflow-hidden">
-                        <div className="p-4 bg-gray-900/60 border-b border-gray-850">
-                          <h4 className="text-xs font-bold uppercase tracking-wider text-gray-400">Selected Specification Details</h4>
+                      <div className="lg:col-span-5 rounded-2xl glass border border-[#EADBCE]/35 overflow-hidden">
+                        <div className="p-4 bg-[#F4ECE1]/60 border-b border-[#EADBCE]/30">
+                          <h4 className="text-xs font-bold uppercase tracking-wider text-[#8E7B6E]">Selected Specification Details</h4>
                         </div>
 
                         {selectedAdminRequest ? (
-                          <div className="p-6 space-y-6 overflow-y-auto max-h-[600px]">
-                            <div className="border-b border-gray-800 pb-4">
-                              <span className="text-[10px] uppercase font-bold tracking-widest text-cyan-400 mb-1 block">
+                          <div className="p-6 space-y-6 overflow-y-auto max-h-[600px] text-[#352922]">
+                            <div className="border-b border-[#EADBCE]/30 pb-4">
+                              <span className="text-[10px] uppercase font-bold tracking-widest text-[#AA7C11] mb-1 block">
                                 Client Identity
                               </span>
-                              <h3 className="text-lg font-bold text-white">{selectedAdminRequest.userName}</h3>
-                              <p className="text-xs text-gray-400">{selectedAdminRequest.userEmail}</p>
+                              <h3 className="text-lg font-serif font-bold text-[#312520]">{selectedAdminRequest.userName}</h3>
+                              <p className="text-xs text-[#5C4C41]">{selectedAdminRequest.userEmail}</p>
                             </div>
 
                             <div className="grid grid-cols-2 gap-4">
                               <div>
-                                <span className="text-[10px] uppercase font-bold tracking-widest text-gray-500 block mb-1">
+                                <span className="text-[10px] uppercase font-bold tracking-widest text-[#8E7B6E] block mb-1">
                                   Created Date
                                 </span>
-                                <span className="text-xs text-gray-300 font-mono">
+                                <span className="text-xs text-[#5C4C41] font-mono">
                                   {new Date(selectedAdminRequest.createdAt).toLocaleDateString()}
                                 </span>
                               </div>
                               <div>
-                                <span className="text-[10px] uppercase font-bold tracking-widest text-gray-500 block mb-1">
+                                <span className="text-[10px] uppercase font-bold tracking-widest text-[#8E7B6E] block mb-1">
                                   Project Status
                                 </span>
-                                <span className="text-xs text-white uppercase font-bold">
+                                <span className="text-xs text-[#312520] uppercase font-bold">
                                   {selectedAdminRequest.status}
                                 </span>
                               </div>
@@ -943,12 +958,12 @@ A sleek, modern bento grid style portfolio website built to showcase creative id
                             {/* Features list */}
                             {selectedAdminRequest.features && selectedAdminRequest.features.length > 0 && (
                               <div>
-                                <span className="text-[10px] uppercase font-bold tracking-widest text-gray-500 block mb-2">
+                                <span className="text-[10px] uppercase font-bold tracking-widest text-[#8E7B6E] block mb-2">
                                   Target Tech Features
                                 </span>
                                 <div className="flex flex-wrap gap-1.5">
                                   {selectedAdminRequest.features.map((f: string, idx: number) => (
-                                    <span key={idx} className="text-[10px] bg-gray-850 text-gray-300 px-2.5 py-1 rounded border border-gray-800">
+                                    <span key={idx} className="text-[10px] bg-[#F4ECE1] text-[#312520] px-2.5 py-1 rounded border border-[#EADBCE]/40">
                                       {f}
                                     </span>
                                   ))}
@@ -957,11 +972,11 @@ A sleek, modern bento grid style portfolio website built to showcase creative id
                             )}
 
                             {/* Render requirements spec markdown */}
-                            <div className="border-t border-gray-850 pt-4">
-                              <span className="text-[10px] uppercase font-bold tracking-widest text-cyan-400 block mb-3">
+                            <div className="border-t border-[#EADBCE]/30 pt-4">
+                              <span className="text-[10px] uppercase font-bold tracking-widest text-[#AA7C11] block mb-3">
                                 COMPILED REQUIREMENT MARKDOWN
                               </span>
-                              <div className="p-4 rounded-xl bg-gray-950/70 border border-gray-850 overflow-y-auto max-h-[300px] text-xs leading-relaxed prose text-gray-300">
+                              <div className="p-4 rounded-xl bg-white/70 border border-[#EADBCE]/40 overflow-y-auto max-h-[300px] text-xs leading-relaxed prose text-[#352922]">
                                 <ReactMarkdown>{selectedAdminRequest.requirementsDoc}</ReactMarkdown>
                               </div>
                             </div>

@@ -1,13 +1,16 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, User } from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore';
+import { initializeFirestore } from 'firebase/firestore';
 import firebaseConfig from '../firebase-applet-config.json';
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 // Initialize Firestore targeting the custom databaseId from the applet configuration
-const db = getFirestore(app, (firebaseConfig as any).firestoreDatabaseId);
+// Use experimentalForceLongPolling to ensure robust connection in iframe sandboxed/proxy environments.
+const db = initializeFirestore(app, {
+  experimentalForceLongPolling: true,
+}, (firebaseConfig as any).firestoreDatabaseId);
 
 const provider = new GoogleAuthProvider();
 // Request Google Drive scope to allow creating website requirement files

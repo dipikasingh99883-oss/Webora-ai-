@@ -39,12 +39,12 @@ export default function FAQ() {
   return (
     <section id="faq-section" className="space-y-8 scroll-mt-24">
       <div className="text-center space-y-2">
-        <span className="text-xs font-bold uppercase tracking-widest text-blue-400">FAQS</span>
-        <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">
+        <span className="text-xs font-bold uppercase tracking-widest text-[#C5A86B]">FAQS</span>
+        <h2 className="font-serif text-2xl sm:text-3xl font-extrabold tracking-tight text-[#312520]">
           Frequently Asked Questions
         </h2>
-        <p className="text-gray-400 text-xs max-w-sm mx-auto">
-          Everything you need to know about our next-generation delivery.
+        <p className="text-[#5C4C41] text-xs max-w-sm mx-auto">
+          Everything you need to know about our next-generation luxury delivery pipeline.
         </p>
       </div>
 
@@ -54,27 +54,27 @@ export default function FAQ() {
           return (
             <div
               key={idx}
-              className="glass rounded-2xl border border-gray-800 hover:border-blue-500/20 transition-all overflow-hidden"
+              className="glass rounded-2xl border border-[#EADBCE]/30 hover:border-[#C5A86B]/30 transition-all overflow-hidden shadow-sm"
             >
               <button
                 onClick={() => toggleFAQ(idx)}
                 className="w-full p-5 flex items-center justify-between text-left focus:outline-none cursor-pointer"
               >
                 <div className="flex items-center gap-3">
-                  <HelpCircle className="w-5 h-5 text-cyan-400 shrink-0" />
-                  <span className="text-sm font-bold text-white leading-snug">{faq.question}</span>
+                  <HelpCircle className="w-5 h-5 text-[#C5A86B] shrink-0" />
+                  <span className="text-sm font-bold text-[#312520] leading-snug">{faq.question}</span>
                 </div>
-                <div className={`w-6 h-6 rounded-lg bg-gray-900 flex items-center justify-center text-gray-400 transition-transform ${isOpen ? 'rotate-180 text-blue-400' : ''}`}>
+                <div className={`w-6 h-6 rounded-lg bg-[#F5EFE3] flex items-center justify-center text-[#5C4C41] transition-transform ${isOpen ? 'rotate-180 text-[#AA7C11]' : ''}`}>
                   <ChevronDown className="w-4 h-4" />
                 </div>
               </button>
               
               <div
                 className={`transition-all duration-300 ease-in-out ${
-                  isOpen ? 'max-h-60 border-t border-gray-900/60 p-5' : 'max-h-0'
-                } overflow-hidden bg-gray-950/20`}
+                  isOpen ? 'max-h-60 border-t border-[#EADBCE]/30 p-5' : 'max-h-0'
+                } overflow-hidden bg-[#FAF6F0]/50`}
               >
-                <p className="text-xs text-gray-400 leading-relaxed whitespace-pre-line">
+                <p className="text-xs text-[#5C4C41] leading-relaxed whitespace-pre-line">
                   {faq.answer}
                 </p>
               </div>

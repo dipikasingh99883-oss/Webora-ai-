@@ -252,37 +252,37 @@ export default function TemplateCustomizer({ template, onSave, onClose }: Templa
       <link rel="stylesheet" href={googleFontImportLink} />
 
       {/* Header and Control Row */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-gray-800 pb-4">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-[#EADBCE]/40 pb-4">
         <div className="flex items-center gap-3">
           <button
             onClick={onClose}
-            className="p-2 bg-gray-800 hover:bg-gray-750 text-gray-300 rounded-xl transition-all cursor-pointer border border-gray-700"
+            className="p-2 bg-[#F4ECE1] hover:bg-[#EADBCE] text-[#312520] rounded-xl transition-all cursor-pointer border border-[#D7C5B2]/30"
             title="Back to Catalog"
           >
             <ArrowLeft className="w-4 h-4" />
           </button>
           <div>
-            <span className="text-[10px] text-cyan-400 font-bold uppercase tracking-wider">No-Code Website Studio</span>
-            <h2 className="text-xl font-bold text-white flex items-center gap-2">
+            <span className="text-[10px] text-[#AA7C11] font-bold uppercase tracking-wider">No-Code Website Studio</span>
+            <h2 className="text-xl font-bold text-[#312520] flex items-center gap-2">
               <span>Customizing Layout:</span>
-              <span className="text-blue-400 font-extrabold">{template.name}</span>
+              <span className="text-[#AA7C11] font-bold">{template.name}</span>
             </h2>
           </div>
         </div>
 
         {/* Sync Actions */}
         <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto justify-end">
-          <div className="flex bg-gray-950 p-1 rounded-xl border border-gray-800">
+          <div className="flex bg-white/60 p-1 rounded-xl border border-[#EADBCE]/50">
             <button
               onClick={() => setPreviewDevice('desktop')}
-              className={`p-1.5 rounded-lg transition-all cursor-pointer ${previewDevice === 'desktop' ? 'bg-blue-600 text-white' : 'text-gray-400'}`}
+              className={`p-1.5 rounded-lg transition-all cursor-pointer ${previewDevice === 'desktop' ? 'bg-[#AA7C11] text-white' : 'text-[#8E7B6E]'}`}
               title="Desktop Preview"
             >
               <Laptop className="w-4 h-4" />
             </button>
             <button
               onClick={() => setPreviewDevice('mobile')}
-              className={`p-1.5 rounded-lg transition-all cursor-pointer ${previewDevice === 'mobile' ? 'bg-blue-600 text-white' : 'text-gray-400'}`}
+              className={`p-1.5 rounded-lg transition-all cursor-pointer ${previewDevice === 'mobile' ? 'bg-[#AA7C11] text-white' : 'text-[#8E7B6E]'}`}
               title="Mobile Preview"
             >
               <PhoneIcon className="w-4 h-4" />
@@ -291,7 +291,7 @@ export default function TemplateCustomizer({ template, onSave, onClose }: Templa
 
           <button
             onClick={handleSaveConfig}
-            className="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs font-bold flex items-center gap-2 shadow-lg shadow-emerald-500/10 cursor-pointer"
+            className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold flex items-center gap-2 shadow-lg shadow-emerald-600/15 cursor-pointer"
           >
             <Save className="w-4 h-4" />
             <span>Publish Customizations</span>
@@ -306,11 +306,11 @@ export default function TemplateCustomizer({ template, onSave, onClose }: Templa
         <div className="lg:col-span-5 space-y-6">
           
           {/* Tabs header */}
-          <div className="flex bg-gray-950 p-1.5 rounded-xl border border-gray-800 justify-between gap-1">
+          <div className="flex bg-white/60 p-1.5 rounded-xl border border-[#EADBCE]/50 justify-between gap-1">
             <button
               onClick={() => { setActiveTab('copy'); setAiSuccessMessage(null); }}
               className={`flex-1 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-wider text-center transition-all cursor-pointer ${
-                activeTab === 'copy' ? 'bg-blue-600 text-white' : 'text-gray-400 hover:text-white'
+                activeTab === 'copy' ? 'bg-[#AA7C11] text-white' : 'text-[#5C4C41] hover:text-[#312520]'
               }`}
             >
               Copy Details
@@ -318,7 +318,7 @@ export default function TemplateCustomizer({ template, onSave, onClose }: Templa
             <button
               onClick={() => { setActiveTab('branding'); setAiSuccessMessage(null); }}
               className={`flex-1 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-wider text-center transition-all cursor-pointer ${
-                activeTab === 'branding' ? 'bg-blue-600 text-white' : 'text-gray-400 hover:text-white'
+                activeTab === 'branding' ? 'bg-[#AA7C11] text-white' : 'text-[#5C4C41] hover:text-[#312520]'
               }`}
             >
               Branding / Fonts
@@ -326,7 +326,7 @@ export default function TemplateCustomizer({ template, onSave, onClose }: Templa
             <button
               onClick={() => { setActiveTab('blocks'); setAiSuccessMessage(null); }}
               className={`flex-1 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-wider text-center transition-all cursor-pointer ${
-                activeTab === 'blocks' ? 'bg-blue-600 text-white' : 'text-gray-400 hover:text-white'
+                activeTab === 'blocks' ? 'bg-[#AA7C11] text-white' : 'text-[#5C4C41] hover:text-[#312520]'
               }`}
             >
               Blocks Layout
@@ -334,7 +334,7 @@ export default function TemplateCustomizer({ template, onSave, onClose }: Templa
             <button
               onClick={() => { setActiveTab('ai-autofill'); setAiSuccessMessage(null); }}
               className={`flex-1 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-wider text-center transition-all flex items-center justify-center gap-1 cursor-pointer ${
-                activeTab === 'ai-autofill' ? 'bg-cyan-600 text-white' : 'text-cyan-400 hover:text-cyan-300'
+                activeTab === 'ai-autofill' ? 'bg-gradient-to-r from-[#D4AF37] to-[#AA7C11] text-white shadow-md' : 'text-[#AA7C11] hover:text-[#D4AF37]'
               }`}
             >
               <Sparkles className="w-3 h-3" />
@@ -344,65 +344,65 @@ export default function TemplateCustomizer({ template, onSave, onClose }: Templa
 
           {/* Feedback Area */}
           {aiSuccessMessage && (
-            <div className="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium flex items-center gap-2">
+            <div className="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 text-xs font-medium flex items-center gap-2">
               <Check className="w-4 h-4 shrink-0" />
               <span>{aiSuccessMessage}</span>
             </div>
           )}
 
           {/* Tab Content Box */}
-          <div className="p-5 rounded-2xl glass border border-gray-800 space-y-5 bg-gray-900/10 max-h-[64vh] overflow-y-auto">
+          <div className="p-5 rounded-2xl glass border border-[#EADBCE]/35 space-y-5 bg-[#FAF6F0]/20 max-h-[64vh] overflow-y-auto">
             
             {/* TAB: COPY WRITING */}
             {activeTab === 'copy' && (
               <div className="space-y-4">
                 <div>
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-white mb-3">Hero Headline Copy</h4>
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-[#312520] font-serif mb-3">Hero Headline Copy</h4>
                   <div className="space-y-3.5">
                     <div>
-                      <label className="block text-[10px] font-semibold text-gray-400 uppercase tracking-widest mb-1.5">Hero Headline Title</label>
+                      <label className="block text-[10px] font-semibold text-[#8E7B6E] uppercase tracking-widest mb-1.5">Hero Headline Title</label>
                       <input
                         type="text"
                         value={customContent.heroTitle || ''}
                         onChange={(e) => updateContent({ heroTitle: e.target.value })}
-                        className="w-full px-3 py-2 bg-gray-950 border border-gray-800 rounded-xl text-xs text-white focus:outline-none focus:border-blue-500"
+                        className="w-full px-3 py-2 bg-white/80 border border-[#EADBCE] rounded-xl text-xs text-[#312520] focus:outline-none focus:border-[#AA7C11]"
                       />
                     </div>
                     <div>
-                      <label className="block text-[10px] font-semibold text-gray-400 uppercase tracking-widest mb-1.5">Hero Subtitle</label>
+                      <label className="block text-[10px] font-semibold text-[#8E7B6E] uppercase tracking-widest mb-1.5">Hero Subtitle</label>
                       <textarea
                         rows={2}
                         value={customContent.heroSubtitle || ''}
                         onChange={(e) => updateContent({ heroSubtitle: e.target.value })}
-                        className="w-full px-3 py-2 bg-gray-950 border border-gray-800 rounded-xl text-xs text-white focus:outline-none focus:border-blue-500"
+                        className="w-full px-3 py-2 bg-white/80 border border-[#EADBCE] rounded-xl text-xs text-[#312520] focus:outline-none focus:border-[#AA7C11]"
                       />
                     </div>
                     <div>
-                      <label className="block text-[10px] font-semibold text-gray-400 uppercase tracking-widest mb-1.5">Hero CTA Button Text</label>
+                      <label className="block text-[10px] font-semibold text-[#8E7B6E] uppercase tracking-widest mb-1.5">Hero CTA Button Text</label>
                       <input
                         type="text"
                         value={customContent.heroCtaText || ''}
                         onChange={(e) => updateContent({ heroCtaText: e.target.value })}
-                        className="w-full px-3 py-2 bg-gray-950 border border-gray-800 rounded-xl text-xs text-white focus:outline-none focus:border-blue-500"
+                        className="w-full px-3 py-2 bg-white/80 border border-[#EADBCE] rounded-xl text-xs text-[#312520] focus:outline-none focus:border-[#AA7C11]"
                       />
                     </div>
                   </div>
                 </div>
 
-                <div className="border-t border-gray-850 pt-4">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-white mb-3">Core Custom Services (Exactly 3)</h4>
+                <div className="border-t border-[#EADBCE]/50 pt-4">
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-[#312520] font-serif mb-3">Core Custom Services (Exactly 3)</h4>
                   <div className="space-y-4">
                     {customContent.services?.map((service, index) => (
-                      <div key={index} className="p-3.5 rounded-xl bg-gray-950 border border-gray-850 space-y-2.5">
+                      <div key={index} className="p-3.5 rounded-xl bg-white/70 border border-[#EADBCE]/40 space-y-2.5">
                         <div className="flex items-center gap-2">
-                          <span className="w-5 h-5 rounded-full bg-blue-500/10 text-blue-400 text-[10px] font-bold flex items-center justify-center">
+                          <span className="w-5 h-5 rounded-full bg-[#AA7C11]/10 text-[#AA7C11] text-[10px] font-bold flex items-center justify-center">
                             {index + 1}
                           </span>
-                          <span className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider">Service Card {index + 1}</span>
+                          <span className="text-[10px] font-semibold text-[#8E7B6E] uppercase tracking-wider">Service Card {index + 1}</span>
                         </div>
                         <div className="grid grid-cols-3 gap-2">
                           <div className="col-span-1">
-                            <label className="block text-[9px] text-gray-500 uppercase font-semibold mb-1">Lucide Icon</label>
+                            <label className="block text-[9px] text-[#8E7B6E] uppercase font-semibold mb-1">Lucide Icon</label>
                             <select
                               value={service.icon}
                               onChange={(e) => {
@@ -410,7 +410,7 @@ export default function TemplateCustomizer({ template, onSave, onClose }: Templa
                                 list[index].icon = e.target.value;
                                 updateContent({ services: list });
                               }}
-                              className="w-full px-2 py-1.5 bg-gray-900 border border-gray-800 rounded-lg text-[10px] text-white"
+                              className="w-full px-2 py-1.5 bg-white border border-[#EADBCE] rounded-lg text-[10px] text-[#312520]"
                             >
                               {['Sparkles', 'Shield', 'Briefcase', 'Layout', 'Search', 'Phone', 'Mail', 'Heart', 'Coffee', 'Activity', 'Home', 'ShoppingBag'].map(i => (
                                 <option key={i} value={i}>{i}</option>
@@ -418,7 +418,7 @@ export default function TemplateCustomizer({ template, onSave, onClose }: Templa
                             </select>
                           </div>
                           <div className="col-span-2">
-                            <label className="block text-[9px] text-gray-500 uppercase font-semibold mb-1">Service Title</label>
+                            <label className="block text-[9px] text-[#8E7B6E] uppercase font-semibold mb-1">Service Title</label>
                             <input
                               type="text"
                               value={service.title}
@@ -427,12 +427,12 @@ export default function TemplateCustomizer({ template, onSave, onClose }: Templa
                                 list[index].title = e.target.value;
                                 updateContent({ services: list });
                               }}
-                              className="w-full px-2 py-1.5 bg-gray-900 border border-gray-800 rounded-lg text-[10px] text-white focus:outline-none"
+                              className="w-full px-2 py-1.5 bg-white border border-[#EADBCE] rounded-lg text-[10px] text-[#312520] focus:outline-none focus:border-[#AA7C11]"
                             />
                           </div>
                         </div>
                         <div>
-                          <label className="block text-[9px] text-gray-500 uppercase font-semibold mb-1">Service Description</label>
+                          <label className="block text-[9px] text-[#8E7B6E] uppercase font-semibold mb-1">Service Description</label>
                           <textarea
                             rows={1.5}
                             value={service.desc}
@@ -441,7 +441,7 @@ export default function TemplateCustomizer({ template, onSave, onClose }: Templa
                               list[index].desc = e.target.value;
                               updateContent({ services: list });
                             }}
-                            className="w-full px-2 py-1.5 bg-gray-900 border border-gray-800 rounded-lg text-[10px] text-white focus:outline-none"
+                            className="w-full px-2 py-1.5 bg-white border border-[#EADBCE] rounded-lg text-[10px] text-[#312520] focus:outline-none focus:border-[#AA7C11]"
                           />
                         </div>
                       </div>
@@ -449,34 +449,34 @@ export default function TemplateCustomizer({ template, onSave, onClose }: Templa
                   </div>
                 </div>
 
-                <div className="border-t border-gray-850 pt-4">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-white mb-3">Contact and Social Channels</h4>
+                <div className="border-t border-[#EADBCE]/50 pt-4">
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-[#312520] font-serif mb-3">Contact and Social Channels</h4>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                     <div>
-                      <label className="block text-[9px] text-gray-400 uppercase font-semibold mb-1">Contact Email</label>
+                      <label className="block text-[9px] text-[#8E7B6E] uppercase font-semibold mb-1">Contact Email</label>
                       <input
                         type="email"
                         value={customContent.contactEmail || ''}
                         onChange={(e) => updateContent({ contactEmail: e.target.value })}
-                        className="w-full px-3 py-2 bg-gray-950 border border-gray-800 rounded-xl text-xs text-white focus:outline-none"
+                        className="w-full px-3 py-2 bg-white/80 border border-[#EADBCE] rounded-xl text-xs text-[#312520] focus:outline-none focus:border-[#AA7C11]"
                       />
                     </div>
                     <div>
-                      <label className="block text-[9px] text-gray-400 uppercase font-semibold mb-1">Contact Phone</label>
+                      <label className="block text-[9px] text-[#8E7B6E] uppercase font-semibold mb-1">Contact Phone</label>
                       <input
                         type="text"
                         value={customContent.contactPhone || ''}
                         onChange={(e) => updateContent({ contactPhone: e.target.value })}
-                        className="w-full px-3 py-2 bg-gray-950 border border-gray-800 rounded-xl text-xs text-white focus:outline-none"
+                        className="w-full px-3 py-2 bg-white/80 border border-[#EADBCE] rounded-xl text-xs text-[#312520] focus:outline-none focus:border-[#AA7C11]"
                       />
                     </div>
                     <div className="sm:col-span-2">
-                      <label className="block text-[9px] text-gray-400 uppercase font-semibold mb-1">Office / Operations Location</label>
+                      <label className="block text-[9px] text-[#8E7B6E] uppercase font-semibold mb-1">Office / Operations Location</label>
                       <input
                         type="text"
                         value={customContent.contactAddress || ''}
                         onChange={(e) => updateContent({ contactAddress: e.target.value })}
-                        className="w-full px-3 py-2 bg-gray-950 border border-gray-800 rounded-xl text-xs text-white focus:outline-none"
+                        className="w-full px-3 py-2 bg-white/80 border border-[#EADBCE] rounded-xl text-xs text-[#312520] focus:outline-none focus:border-[#AA7C11]"
                       />
                     </div>
                   </div>
@@ -489,36 +489,36 @@ export default function TemplateCustomizer({ template, onSave, onClose }: Templa
             {activeTab === 'branding' && (
               <div className="space-y-4">
                 <div>
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-white mb-3">Identity Logo & Brand Title</h4>
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-[#312520] font-serif mb-3">Identity Logo & Brand Title</h4>
                   <div className="grid grid-cols-3 gap-3">
                     <div className="col-span-1">
-                      <label className="block text-[9px] text-gray-400 uppercase font-semibold mb-1">Text Logo</label>
+                      <label className="block text-[9px] text-[#8E7B6E] uppercase font-semibold mb-1">Text Logo</label>
                       <input
                         type="text"
                         maxLength={4}
                         value={customContent.logo || ''}
                         onChange={(e) => updateContent({ logo: e.target.value })}
-                        className="w-full px-3 py-2 bg-gray-950 border border-gray-800 rounded-xl text-xs text-white font-bold tracking-widest text-center"
+                        className="w-full px-3 py-2 bg-white/80 border border-[#EADBCE] rounded-xl text-xs text-[#312520] font-bold tracking-widest text-center focus:outline-none focus:border-[#AA7C11]"
                       />
                     </div>
                     <div className="col-span-2">
-                      <label className="block text-[9px] text-gray-400 uppercase font-semibold mb-1">Business Name Display</label>
+                      <label className="block text-[9px] text-[#8E7B6E] uppercase font-semibold mb-1">Business Name Display</label>
                       <input
                         type="text"
                         value={customContent.brandName || ''}
                         onChange={(e) => updateContent({ brandName: e.target.value })}
-                        className="w-full px-3 py-2 bg-gray-950 border border-gray-800 rounded-xl text-xs text-white"
+                        className="w-full px-3 py-2 bg-white/80 border border-[#EADBCE] rounded-xl text-xs text-[#312520] focus:outline-none focus:border-[#AA7C11]"
                       />
                     </div>
                   </div>
                 </div>
 
-                <div className="border-t border-gray-850 pt-4">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-white mb-3">Design Color Accents</h4>
+                <div className="border-t border-[#EADBCE]/50 pt-4">
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-[#312520] font-serif mb-3">Design Color Accents</h4>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-[9px] text-gray-400 uppercase font-semibold mb-1 flex items-center gap-1">
-                        <Palette className="w-3.5 h-3.5 text-blue-400" />
+                      <label className="block text-[9px] text-[#8E7B6E] uppercase font-semibold mb-1 flex items-center gap-1">
+                        <Palette className="w-3.5 h-3.5 text-[#AA7C11]" />
                         <span>Primary Color</span>
                       </label>
                       <div className="flex gap-2">
@@ -532,13 +532,13 @@ export default function TemplateCustomizer({ template, onSave, onClose }: Templa
                           type="text"
                           value={customContent.primaryColor}
                           onChange={(e) => updateContent({ primaryColor: e.target.value })}
-                          className="w-full px-2 py-1 bg-gray-950 border border-gray-800 rounded-lg text-xs font-mono text-white"
+                          className="w-full px-2 py-1 bg-white border border-[#EADBCE] rounded-lg text-xs font-mono text-[#312520] focus:outline-none focus:border-[#AA7C11]"
                         />
                       </div>
                     </div>
                     <div>
-                      <label className="block text-[9px] text-gray-400 uppercase font-semibold mb-1 flex items-center gap-1">
-                        <Palette className="w-3.5 h-3.5 text-cyan-400" />
+                      <label className="block text-[9px] text-[#8E7B6E] uppercase font-semibold mb-1 flex items-center gap-1">
+                        <Palette className="w-3.5 h-3.5 text-[#AA7C11]" />
                         <span>Secondary Color</span>
                       </label>
                       <div className="flex gap-2">
@@ -552,16 +552,16 @@ export default function TemplateCustomizer({ template, onSave, onClose }: Templa
                           type="text"
                           value={customContent.secondaryColor}
                           onChange={(e) => updateContent({ secondaryColor: e.target.value })}
-                          className="w-full px-2 py-1 bg-gray-950 border border-gray-800 rounded-lg text-xs font-mono text-white"
+                          className="w-full px-2 py-1 bg-white border border-[#EADBCE] rounded-lg text-xs font-mono text-[#312520] focus:outline-none focus:border-[#AA7C11]"
                         />
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div className="border-t border-gray-850 pt-4">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-white mb-3 flex items-center gap-1.5">
-                    <FontIcon className="w-4 h-4 text-cyan-400" />
+                <div className="border-t border-[#EADBCE]/50 pt-4">
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-[#312520] font-serif mb-3 flex items-center gap-1.5">
+                    <FontIcon className="w-4 h-4 text-[#AA7C11]" />
                     <span>Brand Typography Fonts</span>
                   </h4>
                   <div className="space-y-1.5">
@@ -572,13 +572,13 @@ export default function TemplateCustomizer({ template, onSave, onClose }: Templa
                         onClick={() => updateContent({ fontFamily: font.value })}
                         className={`w-full p-2.5 rounded-xl border text-left text-xs font-medium flex items-center justify-between transition-colors cursor-pointer ${
                           customContent.fontFamily === font.value 
-                            ? 'bg-blue-600/10 border-blue-500/30 text-white' 
-                            : 'bg-gray-950 border-gray-850 text-gray-400 hover:text-white'
+                            ? 'bg-[#AA7C11]/10 border-[#AA7C11] text-[#AA7C11]' 
+                            : 'bg-white/70 border border-[#EADBCE]/60 text-[#5C4C41] hover:text-[#312520]'
                         }`}
                         style={{ fontFamily: font.value }}
                       >
                         <span>{font.name}</span>
-                        {customContent.fontFamily === font.value && <Check className="w-4 h-4 text-blue-400" />}
+                        {customContent.fontFamily === font.value && <Check className="w-4 h-4 text-[#AA7C11]" />}
                       </button>
                     ))}
                   </div>
@@ -591,17 +591,17 @@ export default function TemplateCustomizer({ template, onSave, onClose }: Templa
             {activeTab === 'blocks' && (
               <div className="space-y-4">
                 <div>
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-white">Arrange Website Sections</h4>
-                  <p className="text-[10px] text-gray-500 mt-0.5 mb-3">Re-order blocks, toggle active visibility, or add custom landing layout rows.</p>
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-[#312520] font-serif">Arrange Website Sections</h4>
+                  <p className="text-[10px] text-[#5C4C41] mt-0.5 mb-3">Re-order blocks, toggle active visibility, or add custom landing layout rows.</p>
                   
                   <div className="space-y-2.5">
                     {sections.map((sec, idx) => (
-                      <div key={sec.id} className="p-3 bg-gray-950 border border-gray-850 rounded-xl flex items-center justify-between gap-3 group">
+                      <div key={sec.id} className="p-3 bg-white/75 border border-[#EADBCE]/50 rounded-xl flex items-center justify-between gap-3 group">
                         <div className="flex items-center gap-2">
-                          <span className="text-xs font-bold text-gray-500">{idx + 1}</span>
+                          <span className="text-xs font-bold text-[#8E7B6E]">{idx + 1}</span>
                           <div>
-                            <span className="text-xs font-bold text-white block">{sec.title}</span>
-                            <span className="text-[9px] text-cyan-400 uppercase tracking-widest block font-bold">{sec.type} block</span>
+                            <span className="text-xs font-bold text-[#312520] block">{sec.title}</span>
+                            <span className="text-[9px] text-[#AA7C11] uppercase tracking-widest block font-bold">{sec.type} block</span>
                           </div>
                         </div>
 
@@ -611,7 +611,7 @@ export default function TemplateCustomizer({ template, onSave, onClose }: Templa
                             type="button"
                             disabled={idx === 0}
                             onClick={() => moveSectionUp(idx)}
-                            className="p-1 hover:bg-gray-800 disabled:opacity-20 text-gray-400 hover:text-white rounded transition-colors cursor-pointer"
+                            className="p-1 hover:bg-[#F4ECE1] disabled:opacity-20 text-[#8E7B6E] hover:text-[#312520] rounded transition-colors cursor-pointer"
                             title="Move Block Up"
                           >
                             ▲
@@ -620,7 +620,7 @@ export default function TemplateCustomizer({ template, onSave, onClose }: Templa
                             type="button"
                             disabled={idx === sections.length - 1}
                             onClick={() => moveSectionDown(idx)}
-                            className="p-1 hover:bg-gray-800 disabled:opacity-20 text-gray-400 hover:text-white rounded transition-colors cursor-pointer"
+                            className="p-1 hover:bg-[#F4ECE1] disabled:opacity-20 text-[#8E7B6E] hover:text-[#312520] rounded transition-colors cursor-pointer"
                             title="Move Block Down"
                           >
                             ▼
@@ -628,7 +628,7 @@ export default function TemplateCustomizer({ template, onSave, onClose }: Templa
                           <button
                             type="button"
                             onClick={() => deleteSectionBlock(sec.id)}
-                            className="p-1 hover:bg-red-500/15 text-gray-500 hover:text-red-400 rounded transition-colors cursor-pointer"
+                            className="p-1 hover:bg-red-500/10 text-red-500/60 hover:text-red-600 rounded transition-colors cursor-pointer"
                             title="Delete Block"
                           >
                             <Trash className="w-3.5 h-3.5" />
@@ -639,9 +639,9 @@ export default function TemplateCustomizer({ template, onSave, onClose }: Templa
                   </div>
                 </div>
 
-                <div className="border-t border-gray-850 pt-4">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-white mb-2 flex items-center gap-1">
-                    <Plus className="w-4 h-4 text-blue-400" />
+                <div className="border-t border-[#EADBCE]/50 pt-4">
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-[#312520] font-serif mb-2 flex items-center gap-1">
+                    <Plus className="w-4 h-4 text-[#AA7C11]" />
                     <span>Insert Section Blocks</span>
                   </h4>
                   <div className="grid grid-cols-2 gap-2">
@@ -650,7 +650,7 @@ export default function TemplateCustomizer({ template, onSave, onClose }: Templa
                         key={type}
                         type="button"
                         onClick={() => addSectionBlock(type as any)}
-                        className="p-2.5 bg-gray-950 hover:bg-gray-850 border border-gray-850 rounded-xl text-[10px] font-bold text-gray-300 text-left hover:border-blue-500/35 transition-colors cursor-pointer"
+                        className="p-2.5 bg-white/80 hover:bg-white border border-[#EADBCE] rounded-xl text-[10px] font-bold text-[#5C4C41] text-left hover:border-[#AA7C11]/50 transition-colors cursor-pointer"
                       >
                         + Add {type.toUpperCase()}
                       </button>
@@ -664,8 +664,8 @@ export default function TemplateCustomizer({ template, onSave, onClose }: Templa
             {/* TAB: AI AUTO-FILL SYSTEM */}
             {activeTab === 'ai-autofill' && (
               <div className="space-y-4">
-                <div className="p-3.5 rounded-xl bg-cyan-600/10 border border-cyan-500/20 text-cyan-300 flex gap-2">
-                  <Sparkles className="w-5 h-5 text-cyan-400 shrink-0 mt-0.5" />
+                <div className="p-3.5 rounded-xl bg-[#C5A86B]/10 border border-[#C5A86B]/20 text-[#AA7C11] flex gap-2">
+                  <Sparkles className="w-5 h-5 text-[#AA7C11] shrink-0 mt-0.5" />
                   <p className="text-[10px] leading-relaxed">
                     <strong>AI Smart Fill:</strong> Supply basic business parameters below, and the server-side Gemini 3.5 model will generate coordinating layout content, custom pricing scales, styled services lists, and hex color pairings!
                   </p>
@@ -673,22 +673,22 @@ export default function TemplateCustomizer({ template, onSave, onClose }: Templa
 
                 <div className="space-y-3.5">
                   <div>
-                    <label className="block text-[9px] font-semibold text-gray-400 uppercase tracking-widest mb-1">Company Display Name</label>
+                    <label className="block text-[9px] font-semibold text-[#8E7B6E] uppercase tracking-widest mb-1">Company Display Name</label>
                     <input
                       type="text"
                       value={aiBizName}
                       onChange={(e) => setAiBizName(e.target.value)}
                       placeholder="e.g. FitPulse Elite"
-                      className="w-full px-3 py-2 bg-gray-950 border border-gray-800 rounded-xl text-xs text-white focus:outline-none"
+                      className="w-full px-3 py-2 bg-white border border-[#EADBCE] rounded-xl text-xs text-[#312520] focus:outline-none focus:border-[#AA7C11]"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-[9px] font-semibold text-gray-400 uppercase tracking-widest mb-1">Business Type Category</label>
+                    <label className="block text-[9px] font-semibold text-[#8E7B6E] uppercase tracking-widest mb-1">Business Type Category</label>
                     <select
                       value={aiBizType}
                       onChange={(e) => setAiBizType(e.target.value)}
-                      className="w-full px-3 py-2 bg-gray-950 border border-gray-800 rounded-xl text-xs text-white focus:outline-none"
+                      className="w-full px-3 py-2 bg-white border border-[#EADBCE] rounded-xl text-xs text-[#312520] focus:outline-none focus:border-[#AA7C11]"
                     >
                       {['Restaurant', 'Gym', 'Salon', 'Real Estate', 'Clinic', 'E-commerce', 'Portfolio', 'Agency', 'Consulting', 'Software SaaS'].map(c => (
                         <option key={c} value={c}>{c}</option>
@@ -697,35 +697,35 @@ export default function TemplateCustomizer({ template, onSave, onClose }: Templa
                   </div>
 
                   <div>
-                    <label className="block text-[9px] font-semibold text-gray-400 uppercase tracking-widest mb-1">About / Core Focus description</label>
+                    <label className="block text-[9px] font-semibold text-[#8E7B6E] uppercase tracking-widest mb-1">About / Core Focus description</label>
                     <textarea
                       rows={2.5}
                       value={aiAbout}
                       onChange={(e) => setAiAbout(e.target.value)}
                       placeholder="A high-end boutique fitness studio in Mumbai offering personalized CrossFit, Pilates, and nutritionist coaches..."
-                      className="w-full px-3 py-2 bg-gray-950 border border-gray-800 rounded-xl text-xs text-white focus:outline-none"
+                      className="w-full px-3 py-2 bg-white border border-[#EADBCE] rounded-xl text-xs text-[#312520] focus:outline-none focus:border-[#AA7C11]"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-[9px] font-semibold text-gray-400 uppercase tracking-widest mb-1">Coordinating Services (Optional)</label>
+                    <label className="block text-[9px] font-semibold text-[#8E7B6E] uppercase tracking-widest mb-1">Coordinating Services (Optional)</label>
                     <input
                       type="text"
                       value={aiServices}
                       onChange={(e) => setAiServices(e.target.value)}
                       placeholder="Crossfit groups, 1-on-1 diet advice, luxury lockers"
-                      className="w-full px-3 py-2 bg-gray-950 border border-gray-800 rounded-xl text-xs text-white focus:outline-none"
+                      className="w-full px-3 py-2 bg-white border border-[#EADBCE] rounded-xl text-xs text-[#312520] focus:outline-none focus:border-[#AA7C11]"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-[9px] font-semibold text-gray-400 uppercase tracking-widest mb-1">Location / Contact Details</label>
+                    <label className="block text-[9px] font-semibold text-[#8E7B6E] uppercase tracking-widest mb-1">Location / Contact Details</label>
                     <input
                       type="text"
                       value={aiContact}
                       onChange={(e) => setAiContact(e.target.value)}
                       placeholder="Bandra West, Mumbai. contact@fitpulse.in"
-                      className="w-full px-3 py-2 bg-gray-950 border border-gray-800 rounded-xl text-xs text-white focus:outline-none"
+                      className="w-full px-3 py-2 bg-white border border-[#EADBCE] rounded-xl text-xs text-[#312520] focus:outline-none focus:border-[#AA7C11]"
                     />
                   </div>
 
@@ -734,7 +734,7 @@ export default function TemplateCustomizer({ template, onSave, onClose }: Templa
                     disabled={isGeneratingAI || !aiBizName}
                     onClick={handleAIGenerate}
                     id="ai-customizer-autofill-btn"
-                    className="w-full py-3 bg-cyan-600 hover:bg-cyan-500 disabled:bg-gray-850 disabled:text-gray-500 text-white font-extrabold text-xs uppercase tracking-wider rounded-xl shadow-lg shadow-cyan-500/10 flex items-center justify-center gap-2 cursor-pointer"
+                    className="w-full py-3 bg-gradient-to-r from-[#D4AF37] to-[#AA7C11] hover:from-[#E5C483] hover:to-[#8C6207] disabled:bg-[#FAF6F0] disabled:text-[#8E7B6E] text-white font-extrabold text-xs uppercase tracking-wider rounded-xl shadow-md shadow-[#AA7C11]/15 flex items-center justify-center gap-2 cursor-pointer border border-[#AA7C11]/20"
                   >
                     {isGeneratingAI ? (
                       <>
@@ -755,9 +755,9 @@ export default function TemplateCustomizer({ template, onSave, onClose }: Templa
           </div>
 
           {/* Quick tips */}
-          <div className="p-4 rounded-2xl bg-gray-950 border border-gray-850 flex items-start gap-2.5">
-            <Info className="w-4 h-4 text-cyan-400 mt-0.5 shrink-0" />
-            <p className="text-[10px] text-gray-500 leading-normal">
+          <div className="p-4 rounded-2xl bg-[#F4ECE1]/65 border border-[#EADBCE]/60 flex items-start gap-2.5">
+            <Info className="w-4 h-4 text-[#AA7C11] mt-0.5 shrink-0" />
+            <p className="text-[10px] text-[#5C4C41] leading-normal">
               <strong>Live Layout:</strong> Double check that you hit <strong>Publish Customizations</strong> on the top right to store your layouts inside the spec db permanently.
             </p>
           </div>

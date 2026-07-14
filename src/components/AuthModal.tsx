@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { googleSignIn, User } from '../firebase';
+import { googleSignIn } from '../firebase';
 import { Shield, LogIn, Chrome, X, AlertCircle } from 'lucide-react';
 
 interface AuthModalProps {
@@ -34,7 +34,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
       }
     } catch (err: any) {
       console.error(err);
-      setError('Google authenticaton failed. Please check popup permissions.');
+      setError('Google authentication failed. Please check popup permissions.');
     } finally {
       setLoading(false);
     }
@@ -64,26 +64,26 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
   };
 
   return (
-    <div id="auth-modal-backdrop" className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
-      <div id="auth-modal" className="w-full max-w-md overflow-hidden rounded-2xl glass glow-blue relative p-8">
+    <div id="auth-modal-backdrop" className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1A1310]/60 backdrop-blur-md">
+      <div id="auth-modal" className="w-full max-w-md overflow-hidden rounded-2xl glass border border-[#EADBCE]/45 relative p-8">
         {/* Close Button */}
         <button 
           onClick={onClose}
           id="auth-close-btn"
-          className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors p-1 rounded-lg hover:bg-gray-800"
+          className="absolute top-4 right-4 text-[#8E7B6E] hover:text-[#312520] transition-colors p-1 rounded-lg hover:bg-[#F4ECE1]"
         >
           <X className="w-5 h-5" />
         </button>
 
         {/* Modal Header */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 mb-3">
+          <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-[#AA7C11]/10 text-[#AA7C11] mb-3">
             {isAdminMode ? <Shield className="w-6 h-6" /> : <LogIn className="w-6 h-6" />}
           </div>
-          <h3 className="text-2xl font-bold tracking-tight text-white">
+          <h3 className="text-2xl font-serif font-bold tracking-tight text-[#312520]">
             {isAdminMode ? 'Admin Portal Access' : 'Sign in to Webora AI'}
           </h3>
-          <p className="text-gray-400 text-sm mt-1">
+          <p className="text-[#5C4C41] text-sm mt-1">
             {isAdminMode 
               ? 'Enter administrative agency credentials.' 
               : 'Create complete website documents & export directly to Google Drive.'}
@@ -92,7 +92,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
 
         {/* Error Alert */}
         {error && (
-          <div id="auth-error" className="mb-4 p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 flex items-start gap-2.5 text-sm">
+          <div id="auth-error" className="mb-4 p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-600 flex items-start gap-2.5 text-sm">
             <AlertCircle className="w-4 h-4 mt-0.5 shrink-0" />
             <span>{error}</span>
           </div>
@@ -106,23 +106,23 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
               onClick={handleGoogleSignIn}
               disabled={loading}
               id="google-signin-btn"
-              className="w-full flex items-center justify-center gap-3 py-3 px-4 rounded-xl border border-gray-700 bg-gray-800 hover:bg-gray-750 text-white font-medium text-sm transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+              className="w-full flex items-center justify-center gap-3 py-3 px-4 rounded-xl border border-[#EADBCE] bg-[#FAF6F0] hover:bg-[#F4ECE1] text-[#312520] font-medium text-sm transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
             >
-              <Chrome className="w-5 h-5 text-blue-400" />
+              <Chrome className="w-5 h-5 text-[#AA7C11]" />
               <span>Continue with Google</span>
             </button>
 
             <div className="relative my-6 flex py-2 items-center">
-              <div className="flex-grow border-t border-gray-800"></div>
-              <span className="flex-shrink mx-4 text-gray-500 text-xs uppercase font-semibold tracking-wider">Agency Staff</span>
-              <div className="flex-grow border-t border-gray-800"></div>
+              <div className="flex-grow border-t border-[#EADBCE]/60"></div>
+              <span className="flex-shrink mx-4 text-[#8E7B6E] text-xs uppercase font-semibold tracking-wider">Agency Staff</span>
+              <div className="flex-grow border-t border-[#EADBCE]/60"></div>
             </div>
 
             {/* Admin toggle */}
             <button
               onClick={() => { setIsAdminMode(true); setError(null); }}
               id="toggle-admin-btn"
-              className="w-full py-2.5 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium border border-blue-500/10 hover:border-blue-500/20 rounded-xl bg-blue-500/5"
+              className="w-full py-2.5 text-xs text-[#AA7C11] hover:text-[#AA7C11]/80 transition-colors font-medium border border-[#AA7C11]/15 hover:border-[#AA7C11]/35 rounded-xl bg-[#AA7C11]/5 cursor-pointer"
             >
               Access Administrator Dashboard
             </button>
@@ -130,25 +130,25 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
         ) : (
           <form onSubmit={handleAdminSignIn} className="space-y-4">
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">Admin Email / Handle</label>
+              <label className="block text-xs font-semibold uppercase tracking-wider text-[#8E7B6E] mb-2">Admin Email / Handle</label>
               <input
                 type="text"
                 required
                 value={adminEmail}
                 onChange={(e) => setAdminEmail(e.target.value)}
                 placeholder=" Enter Name"
-                className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors text-sm"
+                className="w-full px-4 py-3 bg-white border border-[#EADBCE] rounded-xl text-[#312520] placeholder-[#8E7B6E]/60 focus:outline-none focus:border-[#AA7C11] transition-colors text-sm"
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">Password</label>
+              <label className="block text-xs font-semibold uppercase tracking-wider text-[#8E7B6E] mb-2">Password</label>
               <input
                 type="password"
                 required
                 value={adminPassword}
                 onChange={(e) => setAdminPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors text-sm"
+                className="w-full px-4 py-3 bg-white border border-[#EADBCE] rounded-xl text-[#312520] placeholder-[#8E7B6E]/60 focus:outline-none focus:border-[#AA7C11] transition-colors text-sm"
               />
             </div>
 
@@ -156,7 +156,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
               type="submit"
               disabled={loading}
               id="admin-submit-btn"
-              className="w-full py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-medium text-sm transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+              className="w-full py-3 bg-gradient-to-r from-[#D4AF37] to-[#AA7C11] hover:from-[#E5C483] hover:to-[#8C6207] text-white rounded-xl font-medium text-sm transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer border border-[#AA7C11]/10 shadow-md shadow-[#AA7C11]/15"
             >
               Verify Credentials
             </button>
@@ -165,7 +165,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
               type="button"
               onClick={() => { setIsAdminMode(false); setError(null); }}
               id="back-to-client-btn"
-              className="w-full text-center text-xs text-gray-400 hover:text-white transition-colors pt-2 block font-medium"
+              className="w-full text-center text-xs text-[#5C4C41] hover:text-[#312520] transition-colors pt-2 block font-medium"
             >
               ← Back to Client Login
             </button>
